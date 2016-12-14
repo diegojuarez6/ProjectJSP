@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.insuranceListTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.insuranceListTitle}</h2>
+                <h:form>
+                    <p:commandButton value="#{str.buttonAdd}"
+                                     action="#{insuranceBean.agregar()}"></p:commandButton>
+                </h:form>
+                <p:dataTable value="#{insuranceBean.insurances}" var="i">
+                    <p:column headerText="#{str.action}">
+                        <h:form>
+                            <h:commandButton value="#{str.buttonEdit}"
+                                             action="#{insuranceBean.editar(i)}"></h:commandButton>
+                        </h:form>
+                    </p:column>
+
+                    <p:column headerText="#{str.insuranceContactFnameHeader}">
+                        <p:outputLabel value="#{i.contactFname}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column headerText="#{str.insuranceContactLnameHeader}">
+                        <p:outputLabel value="#{i.contactLname}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column headerText="#{str.insurancePhoneHeader}">
+                        <p:outputLabel value="#{i.phone}"></p:outputLabel>
+                    </p:column>
+
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.insureFormTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.insureFormHeader}</h2>
+                <p:fieldset legend="#{str.insureLegendForm}">
+                    <h:form>
+                        <h:panelGrid columns="4">
+
+                            <p:inputText placeholder="#{str.insurePatientPrompt}"
+                                         value="#{insureBean.insure.patient}" 
+                                         style="padding-top:0px; height:24px" ></p:inputText>
+
+
+                            <p:selectOneMenu value="#{insureBean.insure.insurance.idCompany}" style="height:29px">
+                                <f:selectItems value="#{insureBean.insurances}" var="a"
+                                               itemLabel="#{a.contactFname}" itemValue="#{a.idCompany}"></f:selectItems>
+                            </p:selectOneMenu>
+
+                        </h:panelGrid>
+                        <p:commandButton value="#{str.buttonSave}"
+                                         action="#{insureBean.guardar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonDelete}"
+                                         action="#{insureBean.eliminar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonCancel}"
+                                         action="#{insureBean.cancelar()}"></p:commandButton>
+
+                    </h:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

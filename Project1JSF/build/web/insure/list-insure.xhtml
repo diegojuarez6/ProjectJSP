@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.insureListTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.insureListTitle}</h2>
+                <h:form>
+                    <p:commandButton value="#{str.buttonAdd}"
+                                     action="#{insureBean.agregar()}"></p:commandButton>
+                </h:form>
+                <p:dataTable value="#{insureBean.insures}" var="c">
+                    <p:column headerText="#{str.action}">
+                        <h:form>
+                            <h:commandButton value="#{str.buttonEdit}"
+                                             action="#{insureBean.editar(c)}"></h:commandButton>
+                        </h:form>
+                    </p:column>
+                    <p:column headerText="#{str.insurePatientHeader}">
+                        <p:outputLabel value="#{c.patient}"></p:outputLabel>
+                    </p:column>
+
+                    <p:column headerText="#{str.insureInsuranceHeader}">
+                        <p:outputLabel value="#{c.insurance.contactFname}"></p:outputLabel>
+                    </p:column>
+
+                </p:dataTable>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
